@@ -9,12 +9,13 @@ namespace TravelAgency.Models
 {
     public class Hotel
     {
+        [Key]
         public int ID { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Name { get; set; }
-        [Key]
-        [ForeignKey("City")]
+        [ForeignKey("Cities")]
         public int CityID { get; set; }
+        public City City { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Address { get; set; }
         [Column(TypeName = "int")]

@@ -9,11 +9,12 @@ namespace TravelAgency.Models
 {
     public class City
     {
+        [Key]
         public int ID { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Name { get; set; }
-        [Key]
         [ForeignKey("Country")]
         public int CountryID { get; set; }
+        public virtual Country Country { get; set; }
     }
 }

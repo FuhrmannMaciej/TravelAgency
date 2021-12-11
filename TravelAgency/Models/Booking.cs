@@ -9,19 +9,18 @@ namespace TravelAgency.Models
 {
     public class Booking
     {
+        [Key]
         public int ID { get; set; }
-        [Key]
-        [ForeignKey("Customer")]
+        [ForeignKey("Customers")]
         public int CustomerID { get; set; }
-        [Key]
-        [ForeignKey("Offer")]
+        public Customer Customer { get; set; }
+        [ForeignKey("Offers")]
         public int OfferID { get; set; }
-        [Key]
-        [ForeignKey("BookingStatus")]
+        public Offer Offer { get; set; }
+        [ForeignKey("BookingStatuses")]
         public int BookingStatusID { get; set; }
+        public BookingStatus BookingStatus { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
-        [Column(TypeName = "varchar(255)")]
-        public string Details { get; set; }
     }
 }

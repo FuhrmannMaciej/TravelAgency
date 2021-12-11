@@ -9,6 +9,7 @@ namespace TravelAgency.Models
 {
     public class Customer
     {
+        [Key]
         public int ID { get; set; }
         [Column(TypeName = "varchar(64)")]
         public string FirstName { get; set; }

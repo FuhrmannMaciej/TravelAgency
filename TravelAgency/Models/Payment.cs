@@ -9,10 +9,11 @@ namespace TravelAgency.Models
 {
     public class Payment
     {
-        public int ID { get; set; }
         [Key]
-        [ForeignKey("Booking")]
+        public int ID { get; set; }
+        [ForeignKey("Bookings")]
         public int BookingID { get; set; }
+        public Booking Booking { get; set; }
         [DataType(DataType.Currency)]
         public decimal Amount { get; set; }
         [DataType(DataType.DateTime)]

@@ -289,8 +289,91 @@ namespace TravelAgency.Models
                 context.SaveChanges();
 
                 context.Offers.AddRange(
-                    new Offer { CityID = random.Next(1, 26), HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("07/04/2022") },
-                    new Offer { CityID = random.Next(1, 26), HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Now },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("11/12/2021"), ToDate = DateTime.Parse("15/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("12/12/2021"), ToDate = DateTime.Parse("15/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("13/12/2021"), ToDate = DateTime.Parse("15/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("14/12/2021"), ToDate = DateTime.Parse("15/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("15/12/2021"), ToDate = DateTime.Parse("20/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("16/12/2021"), ToDate = DateTime.Parse("20/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("17/12/2021"), ToDate = DateTime.Parse("20/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("18/12/2021"), ToDate = DateTime.Parse("20/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("11/12/2021"), ToDate = DateTime.Parse("20/12/2021") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("21/12/2021"), ToDate = DateTime.Parse("03/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("31/12/2021"), ToDate = DateTime.Parse("03/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("24/12/2021"), ToDate = DateTime.Parse("03/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("25/12/2021"), ToDate = DateTime.Parse("03/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("26/12/2021"), ToDate = DateTime.Parse("03/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("27/12/2021"), ToDate = DateTime.Parse("03/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("28/12/2021"), ToDate = DateTime.Parse("03/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("29/12/2021"), ToDate = DateTime.Parse("03/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("01/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("01/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("02/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("03/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("04/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("05/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("06/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("07/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("08/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("09/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("10/01/2022"), ToDate = DateTime.Parse("12/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("21/01/2022"), ToDate = DateTime.Parse("31/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("22/01/2022"), ToDate = DateTime.Parse("31/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("23/01/2022"), ToDate = DateTime.Parse("31/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("24/01/2022"), ToDate = DateTime.Parse("31/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("25/01/2022"), ToDate = DateTime.Parse("31/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("27/01/2022"), ToDate = DateTime.Parse("31/01/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("01/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("02/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("03/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("04/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("05/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("06/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("07/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("08/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("09/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("10/02/2022"), ToDate = DateTime.Parse("11/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("21/02/2022"), ToDate = DateTime.Parse("28/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("21/02/2022"), ToDate = DateTime.Parse("28/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("22/02/2022"), ToDate = DateTime.Parse("28/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("23/02/2022"), ToDate = DateTime.Parse("28/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("24/02/2022"), ToDate = DateTime.Parse("28/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("25/02/2022"), ToDate = DateTime.Parse("28/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("26/02/2022"), ToDate = DateTime.Parse("28/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("27/02/2022"), ToDate = DateTime.Parse("28/02/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("01/03/2022"), ToDate = DateTime.Parse("10/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("02/03/2022"), ToDate = DateTime.Parse("10/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("03/03/2022"), ToDate = DateTime.Parse("10/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("04/03/2022"), ToDate = DateTime.Parse("10/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("05/03/2022"), ToDate = DateTime.Parse("10/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("06/03/2022"), ToDate = DateTime.Parse("10/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("07/03/2022"), ToDate = DateTime.Parse("10/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("17/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("18/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("19/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("21/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("23/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("24/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("25/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("26/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("27/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
+                    new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("07/04/2022"), ToDate = DateTime.Parse("15/04/2022") }
+                    );
+                context.SaveChanges();
+
+                context.Bookings.AddRange(
+                    new Booking { CustomerID = 1, BookingStatusID = 1, OfferID = 1, Date = DateTime.Parse("11/12/2021") },
+                    new Booking { CustomerID = 1, BookingStatusID = 2, OfferID = 2, Date = DateTime.Parse("12/12/2021") },
+                    new Booking { CustomerID = 2, BookingStatusID = 3, OfferID = 3, Date = DateTime.Parse("13/12/2021") },
+                    new Booking { CustomerID = 3, BookingStatusID = 4, OfferID = 4, Date = DateTime.Parse("14/12/2021") }
+                    );
+                context.SaveChanges();
+
+                context.Payments.AddRange(
+                    new Payment { BookingID = 1, Date = DateTime.Parse("11/12/2021"), Amount = 500.00M },
+                    new Payment { BookingID = 2, Date = DateTime.Parse("12/12/2021"), Amount = 700.00M },
+                    new Payment { BookingID = 3, Date = DateTime.Parse("13/12/2021"), Amount = 100.00M },
+                    new Payment { BookingID = 4, Date = DateTime.Parse("14/12/2021"), Amount = 300.00M }
                     );
                 context.SaveChanges();
             }

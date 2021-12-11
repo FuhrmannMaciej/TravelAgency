@@ -9,16 +9,14 @@ namespace TravelAgency.Models
 {
     public class Offer
     {
+        [Key]
         public int ID { get; set; }
-        [Key]
-        [ForeignKey("Hotel")]
-        public int HotelID { get; set; }
-        [Key]
-        [ForeignKey("Transport")]
+        [ForeignKey("Hotels")]
+        public int? HotelID { get; set; }
+        public Hotel Hotel { get; set; }
+        [ForeignKey("Transports")]
         public int TransportID { get; set; }
-        [Key]
-        [ForeignKey("City")]
-        public int CityID { get; set; }
+        public Transport Transport { get; set; }
         [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
         [DataType(DataType.Date)]

@@ -9,17 +9,17 @@ namespace TravelAgency.Models
 {
     public class Transport
     {
+        [Key]
         public int ID { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Name { get; set; }
-        [Key]
-        [ForeignKey("TicketType")]
+        [ForeignKey("TicketTypes")]
         public int TicketTypeID { get; set; }
-        [Key]
-        [ForeignKey("City")]
+        public TicketType TicketType { get; set; }
+        [ForeignKey("Cities")]
         public int FromCity { get; set; }
-        [Key]
-        [ForeignKey("City")]
+        public City City{ get; set; }
+        [ForeignKey("Cities")]
         public int ToCity { get; set; }
         [Column(TypeName = "decimal(10,2)")]
         public decimal ServicePrice { get; set; }
