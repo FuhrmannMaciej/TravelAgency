@@ -1,0 +1,73 @@
+﻿body {
+    overflow-y: scroll;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    font-size: 14px;
+    min-width: 768px;
+}
+
+.search-panel {
+    width: 370px;
+    margin: 0 0 30px 0;
+    padding: 10px 0;
+    border-radius: 3px;
+    position: relative;
+    border: 1px solid #d9e1ea;
+    box-shadow: 1px 0px 10px #e8e8e8;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.search-panel .form-title {
+    min-height: 36px;
+    margin: 0 20px;
+    padding: 0 0 20px 0;
+    clear: both;
+    position: relative;
+
+}
+
+    .form-title h2 {
+        display: block;
+        font-size: 1.5em;
+        margin-block-start: 0.83em;
+        margin-block-end: 0.83em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+    }
+
+.search-panel label {
+    line-height: 36px;
+    display: block;
+    float: left;
+    width: 92px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-panel .panel-fields{
+    display: block;
+}
+
+    .search-panel .panel-fields .field-dropdown {
+        position: relative;
+        float: left;
+    }
+
+        .search-panel .panel-fields .field-dropdown input {
+            width: 219px;
+            color: #004481;
+            cursor: pointer;
+            padding: 0 5px;
+            height: 34px;
+            border: 1px solid #DADFE6;
+            border-radius: 3px;
+            background-color: #fff;
+            font-weight: 400;
+            font-size: 14px;
+            float: left;
+            line-height: 36px;
+        }
