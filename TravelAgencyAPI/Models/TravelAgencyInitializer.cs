@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TravelAgency.Models
+namespace TravelAgencyAPI.Models
 {
-    public class TravelAgencyInitializer
+    public static class TravelAgencyInitializer
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -17,10 +17,10 @@ namespace TravelAgency.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<TravelAgencyContext>>()))
             {
-                if (context.Offers.Any())
-                {
-                    return;
-                }
+                /*                if (context.Offers.Any())
+                                {
+                                    return;
+                                }*/
 
                 context.Countries.AddRange(
                     new Country { ID = 1, Name = "Argentina", Code = "ARG" },
@@ -37,7 +37,18 @@ namespace TravelAgency.Models
                     new Country { ID = 12, Name = "United Kingdom", Code = "GBR" },
                     new Country { ID = 13, Name = "United States", Code = "USA" }
                     );
-                context.SaveChanges();
+                context.Database.OpenConnection();
+                try
+                {
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Countries ON");
+                    context.SaveChanges();
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Countries OFF");
+                }
+                finally
+                {
+                    context.Database.CloseConnection();
+                }
+
 
                 context.Cities.AddRange(
                     new City { ID = 1, Name = "Buenos Aires", CountryID = 1 },
@@ -67,7 +78,18 @@ namespace TravelAgency.Models
                     new City { ID = 25,Name = "New York", CountryID = 13 },
                     new City { ID = 26, Name = "Miami", CountryID = 13 }
                     );
-                context.SaveChanges();
+                context.Database.OpenConnection();
+                try
+                {
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Cities ON");
+                    context.SaveChanges();
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Cities OFF");
+                }
+                finally
+                {
+                    context.Database.CloseConnection();
+                }
+
 
                 context.BookingStatuses.AddRange(
                     new BookingStatus { Status = "Pending" },
@@ -86,7 +108,7 @@ namespace TravelAgency.Models
                         EmailAddress = "john.smith@gmail.com",
                         Phone = "407-384-9905",
                         Details = "Your real self - the 'I am I' - is master of this land",
-                        CustomerFrom = DateTime.Parse("08/16/2017 12:19:03 AM")
+                        CustomerFrom = DateTime.Parse("16/08/2017 12:19:03")
                     },
                     new Customer
                     {
@@ -96,7 +118,7 @@ namespace TravelAgency.Models
                         EmailAddress = "betty2121@yahoo.com",
                         Phone = "805-917-9294",
                         Details = "This cop is not buying \"I need it to scratch areas on my back I can't reach\" as an excuse for carrying an AK-47.",
-                        CustomerFrom = DateTime.Parse("10/30/2018 04:47:23 AM")
+                        CustomerFrom = DateTime.Parse("30/10/2018 04:47:23")
                     },
                     new Customer
                     {
@@ -106,7 +128,7 @@ namespace TravelAgency.Models
                         EmailAddress = "law12@gmail.com",
                         Phone = "212-470-8212",
                         Details = "Proud music maven. Prone to fits of apathy. Internet aficionado. Coffee specialist. Twitteraholic. Evil organizer.",
-                        CustomerFrom = DateTime.Parse("08/03/2020 12:28:49 PM")
+                        CustomerFrom = DateTime.Parse("08/03/2020 12:28:49")
                     }
                     );
                 context.SaveChanges();
@@ -141,7 +163,17 @@ namespace TravelAgency.Models
                     new Hotel {ID = 27, CityID = 8, Name = "Taj Holiday Village Resort & Spa, Goa", Address = "1794 Rockford Road", StarRating = 3},
                     new Hotel {ID = 28, CityID = 2, Name = "Grand Hotel", Address = "91 Hillside Street", StarRating = 2}
                     );
-                context.SaveChanges();
+                context.Database.OpenConnection();
+                try
+                {
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Hotels ON");
+                    context.SaveChanges();
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Hotels OFF");
+                }
+                finally
+                {
+                    context.Database.CloseConnection();
+                }
 
                 context.RoomTypes.AddRange(
                     new RoomType { Name = "Single" },
@@ -218,7 +250,18 @@ namespace TravelAgency.Models
                     new HotelService { HotelID = 7, RoomTypeID = 4, ServicePrice = 617.59M },
                     new HotelService { HotelID = 28, RoomTypeID = 5, ServicePrice = 230.52M }
                     );
-                context.SaveChanges();
+
+                context.Database.OpenConnection();
+                try
+                {
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.HotelServices ON");
+                    context.SaveChanges();
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.HotelServices OFF");
+                }
+                finally
+                {
+                    context.Database.CloseConnection();
+                }
 
                 context.Transports.AddRange(
                     new Transport { Name = "Plane", TicketTypeID = random.Next(1,4), FromCity = random.Next(1,26), ToCity = random.Next(1, 26), ServicePrice = 95.20M},

@@ -48,8 +48,12 @@
     cursor: pointer;
 }
 
-.search-panel .panel-fields{
+.search-panel .panel-fields .panel-field {
     display: block;
+    margin: 0 20px;
+    padding: 0 0 20px 0;
+    clear: both;
+    position: relative;
 }
 
     .search-panel .panel-fields .field-dropdown {
@@ -70,4 +74,32 @@
             font-size: 14px;
             float: left;
             line-height: 36px;
+        }
+
+    .search-panel .panel-fields .form-submit {
+        margin: 0 30px 0 30px;
+        text-align: right;
+        clear: both;
+    }
+
+        .search-panel .panel-fields .form-submit input {
+            font-weight: normal;
+            position: relative;
+            color: #fff;
+            height: 36px;
+            line-height: 36px;
+            border-radius: 3px;
+            padding: 0 10px;
+            border: none;
+            text-shadow: none;
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(to bottom, #f33 0%, #eb2f2f 100%);
+            display: inline;
+            text-align: left;
+            padding: 10px 30px;
+            margin: 2px 0;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
         }

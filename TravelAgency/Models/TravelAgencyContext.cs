@@ -8,23 +8,10 @@ namespace TravelAgency.Models
 {
     public class TravelAgencyContext : DbContext
     {
-        public TravelAgencyContext(DbContextOptions<TravelAgencyContext> options) 
+        public TravelAgencyContext(DbContextOptions<TravelAgencyContext> options)
             : base(options)
         {
 
         }
-
-        public DbSet<Booking> Bookings { get; set; }
-        public DbSet<BookingStatus> BookingStatuses { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<HotelService> HotelServices { get; set; }
-        public DbSet<Offer> Offers { get; set; }
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<RoomType> RoomTypes { get; set; }
-        public DbSet<TicketType> TicketTypes { get; set; }
-        public DbSet<Transport> Transports { get; set; }
     }
 }

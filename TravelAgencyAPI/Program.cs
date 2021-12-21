@@ -4,9 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using TravelAgency.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TravelAgencyAPI.Models;
 
-namespace TravelAgency
+namespace TravelAgencyAPI
 {
     public class Program
     {
@@ -14,7 +17,7 @@ namespace TravelAgency
         {
             var host = CreateHostBuilder(args).Build();
 
-            /*using (var scope = host.Services.CreateScope())
+            using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
 
@@ -27,7 +30,7 @@ namespace TravelAgency
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
-            }*/
+            }
 
             host.Run();
 
