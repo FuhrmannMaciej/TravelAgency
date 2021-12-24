@@ -15,10 +15,10 @@ namespace TravelAgencyAPI.Models
         public string Name { get; set; }
         [ForeignKey("TicketTypes")]
         public int TicketTypeID { get; set; }
-        public TicketType TicketType { get; set; }
+        private TicketType TicketType { get; set; }
         [ForeignKey("Cities")]
         public int FromCity { get; set; }
-        public City City{ get; set; }
+        private City City{ get; set; }
         [ForeignKey("Cities")]
         public int ToCity { get; set; }
         [Column(TypeName = "decimal(10,2)")]

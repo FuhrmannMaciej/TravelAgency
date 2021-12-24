@@ -282,7 +282,7 @@ namespace TravelAgencyAPI.Migrations
                 name: "IX_Cities_CountryID",
                 table: "Cities",
                 column: "CountryID",
-                unique: true);
+                unique: false);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hotels_CityID",

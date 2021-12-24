@@ -15,6 +15,6 @@ namespace TravelAgencyAPI.Models
         public string Name { get; set; }
         [ForeignKey("Country")]
         public int CountryID { get; set; }
-        public virtual Country Country { get; set; }
+        private Country Country { get; set; }
     }
 }

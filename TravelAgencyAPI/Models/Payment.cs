@@ -13,7 +13,7 @@ namespace TravelAgencyAPI.Models
         public int ID { get; set; }
         [ForeignKey("Bookings")]
         public int BookingID { get; set; }
-        public Booking Booking { get; set; }
+        private Booking Booking { get; set; }
         [DataType(DataType.Currency)]
         public decimal Amount { get; set; }
         [DataType(DataType.DateTime)]

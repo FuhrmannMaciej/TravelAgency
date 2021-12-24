@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelAgencyAPI.Models;
 
 namespace TravelAgencyAPI.Migrations
 {
     [DbContext(typeof(TravelAgencyContext))]
-    partial class TravelAgencyContextModelSnapshot : ModelSnapshot
+    [Migration("20211224124008_hideProps")]
+    partial class hideProps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,6 +41,8 @@ namespace TravelAgencyAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("BookingStatusID");
 
                     b.ToTable("Bookings");
                 });
@@ -278,6 +282,17 @@ namespace TravelAgencyAPI.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Transports");
+                });
+
+            modelBuilder.Entity("TravelAgencyAPI.Models.Booking", b =>
+                {
+                    b.HasOne("TravelAgencyAPI.Models.BookingStatus", "BookingStatus")
+                        .WithMany()
+                        .HasForeignKey("BookingStatusID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BookingStatus");
                 });
 #pragma warning restore 612, 618
         }

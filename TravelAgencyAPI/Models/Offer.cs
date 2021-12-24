@@ -12,11 +12,11 @@ namespace TravelAgencyAPI.Models
         [Key]
         public int ID { get; set; }
         [ForeignKey("Hotels")]
-        public int? HotelID { get; set; }
-        public Hotel Hotel { get; set; }
+        public int HotelID { get; set; }
+        private Hotel Hotel { get; set; }
         [ForeignKey("Transports")]
         public int TransportID { get; set; }
-        public Transport Transport { get; set; }
+        private Transport Transport { get; set; }
         [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
         [DataType(DataType.Date)]
