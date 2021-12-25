@@ -18,6 +18,7 @@ namespace TravelAgencyAPI
 {
     public class Startup
     {
+    private const string APIKEYNAME = "ApiKey";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,6 +35,31 @@ namespace TravelAgencyAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TravelAgencyAPI", Version = "v1" });
+
+                c.AddSecurityDefinition(APIKEYNAME, new OpenApiSecurityScheme()
+                {
+                    In = ParameterLocation.Header,
+                    Name = APIKEYNAME,
+                    Type = SecuritySchemeType.ApiKey,
+                    Description = "Prosze podaæ zakupiony klucz do API."
+                });
+
+                var key = new OpenApiSecurityScheme()
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = APIKEYNAME
+                    },
+                    In = ParameterLocation.Header
+                };
+
+                var requirement = new OpenApiSecurityRequirement
+                    { { key, new List<string>() }};
+
+                c.AddSecurityRequirement(requirement);
+
+                c.SchemaFilter<SwaggerSchemaFilter>();
             });
         }
 

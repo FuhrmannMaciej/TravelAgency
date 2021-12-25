@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using TravelAgencyAPI.Attributes;
 
 namespace TravelAgencyAPI.Models
 {
     public class Booking
     {
+        [SwaggerIgnore]
         [Key]
         public int ID { get; set; }
         [ForeignKey("Customers")]

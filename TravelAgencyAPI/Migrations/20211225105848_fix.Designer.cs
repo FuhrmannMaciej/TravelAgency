@@ -10,8 +10,8 @@ using TravelAgencyAPI.Models;
 namespace TravelAgencyAPI.Migrations
 {
     [DbContext(typeof(TravelAgencyContext))]
-    [Migration("20211224124008_hideProps")]
-    partial class hideProps
+    [Migration("20211225105848_fix")]
+    partial class fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,8 +41,6 @@ namespace TravelAgencyAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("BookingStatusID");
 
                     b.ToTable("Bookings");
                 });
@@ -282,17 +280,6 @@ namespace TravelAgencyAPI.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Transports");
-                });
-
-            modelBuilder.Entity("TravelAgencyAPI.Models.Booking", b =>
-                {
-                    b.HasOne("TravelAgencyAPI.Models.BookingStatus", "BookingStatus")
-                        .WithMany()
-                        .HasForeignKey("BookingStatusID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BookingStatus");
                 });
 #pragma warning restore 612, 618
         }

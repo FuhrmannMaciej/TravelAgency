@@ -4,11 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using TravelAgencyAPI.Attributes;
 
 namespace TravelAgencyAPI.Models
 {
     public class Transport
     {
+        [SwaggerIgnore]
         [Key]
         public int ID { get; set; }
         [Column(TypeName = "varchar(255)")]

@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TravelAgencyAPI.Attributes;
 using TravelAgencyAPI.Models;
 
 namespace TravelAgencyAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiKey]
     public class HotelServicesController : ControllerBase
     {
         private readonly TravelAgencyContext _context;
@@ -41,36 +43,6 @@ namespace TravelAgencyAPI.Controllers
             return hotelService;
         }
 
-        // PUT: api/HotelServices/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutHotelService(int id, HotelService hotelService)
-        {
-            if (id != hotelService.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(hotelService).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HotelServiceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/HotelServices
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
