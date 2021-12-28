@@ -15,8 +15,10 @@ namespace TravelAgencyAPI.Models
         public int ID { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Name { get; set; }
-        [ForeignKey("Country")]
         public int CountryID { get; set; }
-        private Country Country { get; set; }
+        [SwaggerIgnore]
+        public virtual Country Country { get; set; }
+        [SwaggerIgnore]
+        public virtual ICollection<Hotel> Hotels { get; set; }
     }
 }

@@ -15,5 +15,8 @@ namespace TravelAgencyAPI.Models
         public int ID { get; set; }
         [Column(TypeName = "varchar(64)")]
         public string Name { get; set; }
+
+        [SwaggerIgnore]
+        public virtual ICollection<HotelService> HotelServices { get; set; }
     }
 }

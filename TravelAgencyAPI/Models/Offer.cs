@@ -13,12 +13,8 @@ namespace TravelAgencyAPI.Models
         [SwaggerIgnore]
         [Key]
         public int ID { get; set; }
-        [ForeignKey("Hotels")]
         public int HotelID { get; set; }
-        private Hotel Hotel { get; set; }
-        [ForeignKey("Transports")]
         public int TransportID { get; set; }
-        private Transport Transport { get; set; }
         [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
         [DataType(DataType.Date)]
@@ -27,5 +23,17 @@ namespace TravelAgencyAPI.Models
         public int NumberOfPeople { get; set; }
         [DataType(DataType.Currency)]
         public int Price { get; set; }
+        public int NumberOfDays { get
+            {
+                return (ToDate.Date - FromDate.Date).Days;
+            } }
+
+        [SwaggerIgnore]
+        public virtual Hotel Hotels { get; set; }
+        [SwaggerIgnore]
+        public virtual Transport Transports { get; set; }
+        [SwaggerIgnore]
+        public virtual ICollection<Booking> Bookings { get; set; }
+
     }
 }

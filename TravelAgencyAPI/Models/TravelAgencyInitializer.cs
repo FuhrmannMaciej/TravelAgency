@@ -17,96 +17,80 @@ namespace TravelAgencyAPI.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<TravelAgencyContext>>()))
             {
+                    var countries = new List<Country>
+                    {
+                        new Country { Name = "Argentina", Code = "ARG" },
+                        new Country { Name = "Canada", Code = "CAN" },
+                        new Country { Name = "Cyprus", Code = "CYP" },
+                        new Country { Name = "Egypt", Code = "EGY" },
+                        new Country { Name = "France", Code = "FRA" },
+                        new Country { Name = "Japan", Code = "JPN" },
+                        new Country { Name = "Malta", Code = "MLT" },
+                        new Country { Name = "New Zealand", Code = "NZL" },
+                        new Country { Name = "Norway", Code = "NOR" },
+                        new Country { Name = "Poland", Code = "POL" },
+                        new Country { Name = "Russia", Code = "RUS" },
+                        new Country { Name = "United Kingdom", Code = "GBR" },
+                        new Country { Name = "United States", Code = "USA" }
+                   };
                 if (!context.Countries.Any())
                 {
-                   
-                    context.Countries.AddRange(
-                        new Country { ID = 1, Name = "Argentina", Code = "ARG" },
-                        new Country { ID = 2, Name = "Canada", Code = "CAN" },
-                        new Country { ID = 3, Name = "Cyprus", Code = "CYP" },
-                        new Country { ID = 4, Name = "Egypt", Code = "EGY" },
-                        new Country { ID = 5, Name = "France", Code = "FRA" },
-                        new Country { ID = 6, Name = "Japan", Code = "JPN" },
-                        new Country { ID = 7, Name = "Malta", Code = "MLT" },
-                        new Country { ID = 8, Name = "New Zealand", Code = "NZL" },
-                        new Country { ID = 9, Name = "Norway", Code = "NOR" },
-                        new Country { ID = 10, Name = "Poland", Code = "POL" },
-                        new Country { ID = 11, Name = "Russia", Code = "RUS" },
-                        new Country { ID = 12, Name = "United Kingdom", Code = "GBR" },
-                        new Country { ID = 13, Name = "United States", Code = "USA" }
-                        );
-                    context.Database.OpenConnection();
-                    try
-                    {
-                        context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Countries ON");
+                        context.Countries.AddRange(countries);
                         context.SaveChanges();
-                        context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Countries OFF");
-                    }
-                    finally
-                    {
-                        context.Database.CloseConnection();
-                    }
                 }
 
+                    var cities = new List<City>
+                    {
+                        new City { Name = "Buenos Aires", CountryID = countries.Single( s => s.Code == "ARG").ID },
+                        new City { Name = "La Plata", CountryID = countries.Single( s => s.Code == "ARG").ID },
+                        new City { Name = "Formosa", CountryID = countries.Single( s => s.Code == "ARG").ID },
+                        new City { Name = "Toronto", CountryID = countries.Single(s => s.Code == "CAN").ID },
+                        new City { Name = "Ottawa", CountryID = countries.Single(s => s.Code == "CAN").ID },
+                        new City { Name = "Larnaca", CountryID = countries.Single(s => s.Code == "CYP").ID },
+                        new City { Name = "Nicosia", CountryID = countries.Single(s => s.Code == "CYP").ID },
+                        new City { Name = "Alexandria", CountryID = countries.Single(s => s.Code == "EGY").ID },
+                        new City { Name = "Cairo", CountryID = countries.Single(s => s.Code == "EGY").ID },
+                        new City { Name = "Paris", CountryID = countries.Single(s => s.Code == "FRA").ID },
+                        new City { Name = "Lyon", CountryID = countries.Single(s => s.Code == "FRA").ID },
+                        new City { Name = "Nice", CountryID = countries.Single(s => s.Code == "FRA").ID },
+                        new City { Name = "Tokio", CountryID = countries.Single(s => s.Code == "JPN").ID },
+                        new City { Name = "Qormi", CountryID = countries.Single(s => s.Code == "MLT").ID },
+                        new City { Name = "Wellington", CountryID = countries.Single(s => s.Code == "NZL").ID },
+                        new City { Name = "Oslo", CountryID = countries.Single(s => s.Code == "NOR").ID },
+                        new City { Name = "Warsaw", CountryID = countries.Single(s => s.Code == "POL").ID },
+                        new City { Name = "Cracow", CountryID = countries.Single(s => s.Code == "POL").ID },
+                        new City { Name = "Gdansk", CountryID = countries.Single(s => s.Code == "POL").ID },
+                        new City { Name = "Kielce", CountryID = countries.Single(s => s.Code == "POL").ID },
+                        new City { Name = "Moscow", CountryID = countries.Single(s => s.Code == "RUS").ID },
+                        new City { Name = "Abaza", CountryID = countries.Single(s => s.Code == "RUS").ID },
+                        new City { Name = "London", CountryID = countries.Single(s => s.Code == "GBR").ID },
+                        new City { Name = "Liverpool", CountryID = countries.Single(s => s.Code == "GBR").ID },
+                        new City { Name = "New York", CountryID = countries.Single(s => s.Code == "USA").ID },
+                        new City {  Name = "Miami", CountryID = countries.Single(s => s.Code == "USA").ID }
+                    };
                 if (!context.Cities.Any())
                 {
-
-                    context.Cities.AddRange(
-                        new City { ID = 1, Name = "Buenos Aires", CountryID = 1 },
-                        new City { ID = 2, Name = "La Plata", CountryID = 1 },
-                        new City { ID = 3, Name = "Formosa", CountryID = 1 },
-                        new City { ID = 4, Name = "Toronto", CountryID = 2 },
-                        new City { ID = 5, Name = "Ottawa", CountryID = 2 },
-                        new City { ID = 6, Name = "Larnaca", CountryID = 3 },
-                        new City { ID = 7, Name = "Nicosia", CountryID = 3 },
-                        new City { ID = 8, Name = "Alexandria", CountryID = 4 },
-                        new City { ID = 9, Name = "Cairo", CountryID = 4 },
-                        new City { ID = 10,Name = "Paris", CountryID = 5 },
-                        new City { ID = 11,Name = "Lyon", CountryID = 5 },
-                        new City { ID = 12,Name = "Nice", CountryID = 5 },
-                        new City { ID = 13,Name = "Tokio", CountryID = 6 },
-                        new City { ID = 14, Name = "Qormi", CountryID = 7 },
-                        new City { ID = 15, Name = "Wellington", CountryID = 8 },
-                        new City { ID = 16, Name = "Oslo", CountryID = 9 },
-                        new City { ID = 17, Name = "Warsaw", CountryID = 10 },
-                        new City { ID = 18, Name = "Cracow", CountryID = 10 },
-                        new City { ID = 19, Name = "Gdansk", CountryID = 10 },
-                        new City { ID = 20, Name = "Kielce", CountryID = 10 },
-                        new City { ID = 21, Name = "Moscow", CountryID = 11 },
-                        new City { ID = 22, Name = "Abaza", CountryID = 11 },
-                        new City { ID = 23,Name = "London", CountryID = 12 },
-                        new City { ID = 24,Name = "Liverpool", CountryID = 12 },
-                        new City { ID = 25,Name = "New York", CountryID = 13 },
-                        new City { ID = 26, Name = "Miami", CountryID = 13 }
-                        );
-                    context.Database.OpenConnection();
-                    try
-                    {
-                        context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Cities ON");
-                        context.SaveChanges();
-                        context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Cities OFF");
-                    }
-                    finally
-                    {
-                        context.Database.CloseConnection();
-                    }
+                    context.Cities.AddRange(cities);
+                    context.SaveChanges();
                 }
 
-                if (!context.BookingStatuses.Any())
+                var bookingStatuses = new List<BookingStatus>
                 {
-                    context.BookingStatuses.AddRange(
                     new BookingStatus { Status = "Pending" },
                     new BookingStatus { Status = "Reserved" },
                     new BookingStatus { Status = "Paid" },
                     new BookingStatus { Status = "Cancelled" },
                     new BookingStatus { Status = "Archived" }
-                    );
+                };
+
+                if (!context.BookingStatuses.Any())
+                {
+                    context.BookingStatuses.AddRange(bookingStatuses);
                     context.SaveChanges();
                 }
 
-                if (!context.Customers.Any())
+                var customers = new List<Customer>
                 {
-                    context.Customers.AddRange(
                     new Customer
                     {
                         FirstName = "John",
@@ -137,81 +121,83 @@ namespace TravelAgencyAPI.Models
                         Details = "Proud music maven. Prone to fits of apathy. Internet aficionado. Coffee specialist. Twitteraholic. Evil organizer.",
                         CustomerFrom = DateTime.Parse("08/03/2020 12:28:49")
                     }
-                    );
+                };
+
+                if (!context.Customers.Any())
+                {
+                    context.Customers.AddRange(customers);
                     context.SaveChanges();
                 }
 
+                var hotels = new List<Hotel>
+                {
+                    new Hotel { CityID = cities.Single( s => s.Name == "Buenos Aires").ID, Name = "Manoir Hovey", Address = "1850 Willow Oaks Lane", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "La Plata").ID, Name = "Grand Hotel", Address = "4086 Lyndon Street", StarRating = 4 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Formosa").ID, Name = "Blue Hotel", Address = "1599 Quincy Street", StarRating = 2 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Toronto").ID, Name = "Manoir Hovey", Address = "4525 Cityview Drive", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Ottawa").ID, Name = "The Opposite House", Address = "1850 Willow Oaks Lane", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Larnaca").ID, Name = "Hotel Felix", Address = "1850 Willow Oaks Lane", StarRating = 5 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Nicosia").ID, Name = "The Opposite House", Address = "1850 Willow Oaks Lane", StarRating = 5 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Alexandria").ID, Name = "Grand Hotel", Address = "867 Baker Avenue", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Cairo").ID, Name = "Hotel Felix", Address = "1850 Willow Oaks Lane", StarRating = 4 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Paris").ID, Name = "Hotel Felix", Address = "4395 Yorkie Lane", StarRating = 5 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Lyon").ID, Name = "Grace Hotel", Address = "91 Hillside Street", StarRating = 2 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Nice").ID, Name = "Hotel Felix", Address = "1794 Rockford Road", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Tokio").ID, Name = "The Opposite House", Address = "1794 Rockford Road", StarRating = 1 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Qormi").ID, Name = "Shangri-La the Shard", Address = "1850 Willow Oaks Lane", StarRating = 5 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Wellington").ID, Name = "Hotel Felix", Address = "4395 Yorkie Lane", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Oslo").ID, Name = "Grace Hotel", Address = "1850 Willow Oaks Lane", StarRating = 4 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Warsaw").ID, Name = "Shangri-La the Shard", Address = "1850 Willow Oaks Lane", StarRating = 5 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Cracow").ID, Name = "Hotel Paracas", Address = "4525 Cityview Drive", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Gdansk").ID, Name = "Hotel Paracas", Address = "1850 Willow Oaks Lane", StarRating = 5 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Kielce").ID, Name = "Hotel Felix", Address = "867 Baker Avenue", StarRating = 4 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Moscow").ID, Name = "Grace Hotel", Address = "1850 Willow Oaks Lane", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Abaza").ID, Name = "Hotel Felix", Address = "91 Hillside Street", StarRating = 4 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "London").ID, Name = "Grand Hotel", Address = "3444 Drainer Avenue", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Liverpool").ID, Name = "Hotel Paracas", Address = "1850 Willow Oaks Lane", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "New York").ID, Name = "Grand Hotel", Address = "3444 Drainer Avenue", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Miami").ID, Name = "Taj Holiday Village Resort & Spa, Goa", Address = "4525 Cityview Drive", StarRating = 4 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Buenos Aires").ID, Name = "Taj Holiday Village Resort & Spa, Goa", Address = "1794 Rockford Road", StarRating = 3 },
+                    new Hotel { CityID = cities.Single( s => s.Name == "Gdansk").ID, Name = "Grand Hotel", Address = "91 Hillside Street", StarRating = 2 }
+                };
+
                 if (!context.Hotels.Any())
                 {
-                    context.Hotels.AddRange(
-                    new Hotel { ID = 1, CityID = 1, Name = "Manoir Hovey", Address = "1850 Willow Oaks Lane", StarRating = 3 },
-                    new Hotel { ID = 2, CityID = 2, Name = "Grand Hotel", Address = "4086 Lyndon Street", StarRating = 4 },
-                    new Hotel { ID = 3, CityID = 3, Name = "Blue Hotel", Address = "1599 Quincy Street", StarRating = 2 },
-                    new Hotel { ID = 4, CityID = 4, Name = "Manoir Hovey", Address = "4525 Cityview Drive", StarRating = 3 },
-                    new Hotel { ID = 5, CityID = 5, Name = "The Opposite House", Address = "1850 Willow Oaks Lane", StarRating = 3 },
-                    new Hotel { ID = 6, CityID = 6, Name = "Hotel Felix", Address = "1850 Willow Oaks Lane", StarRating = 5 },
-                    new Hotel { ID = 7, CityID = 7, Name = "The Opposite House", Address = "1850 Willow Oaks Lane", StarRating = 5 },
-                    new Hotel { ID = 8, CityID = 8, Name = "Grand Hotel", Address = "867 Baker Avenue", StarRating = 3 },
-                    new Hotel { ID = 9, CityID = 9, Name = "Hotel Felix", Address = "1850 Willow Oaks Lane", StarRating = 4 },
-                    new Hotel { ID = 10, CityID = 10, Name = "Hotel Felix", Address = "4395 Yorkie Lane", StarRating = 5 },
-                    new Hotel { ID = 11, CityID = 11, Name = "Grace Hotel", Address = "91 Hillside Street", StarRating = 2 },
-                    new Hotel { ID = 12, CityID = 12, Name = "Hotel Felix", Address = "1794 Rockford Road", StarRating = 3 },
-                    new Hotel { ID = 13, CityID = 13, Name = "The Opposite House", Address = "1794 Rockford Road", StarRating = 1 },
-                    new Hotel { ID = 14, CityID = 14, Name = "Shangri-La the Shard", Address = "1850 Willow Oaks Lane", StarRating = 5 },
-                    new Hotel { ID = 15, CityID = 15, Name = "Hotel Felix", Address = "4395 Yorkie Lane", StarRating = 3 },
-                    new Hotel { ID = 16, CityID = 16, Name = "Grace Hotel", Address = "1850 Willow Oaks Lane", StarRating = 4 },
-                    new Hotel { ID = 17, CityID = 17, Name = "Shangri-La the Shard", Address = "1850 Willow Oaks Lane", StarRating = 5 },
-                    new Hotel { ID = 18, CityID = 18, Name = "Hotel Paracas", Address = "4525 Cityview Drive", StarRating = 3 },
-                    new Hotel { ID = 19, CityID = 19, Name = "Hotel Paracas", Address = "1850 Willow Oaks Lane", StarRating = 5 },
-                    new Hotel { ID = 20, CityID = 20, Name = "Hotel Felix", Address = "867 Baker Avenue", StarRating = 4 },
-                    new Hotel { ID = 21, CityID = 21, Name = "Grace Hotel", Address = "1850 Willow Oaks Lane", StarRating = 3 },
-                    new Hotel { ID = 22, CityID = 22, Name = "Hotel Felix", Address = "91 Hillside Street", StarRating = 4 },
-                    new Hotel { ID = 23, CityID = 23, Name = "Grand Hotel", Address = "3444 Drainer Avenue", StarRating = 3 },
-                    new Hotel { ID = 24, CityID = 24, Name = "Hotel Paracas", Address = "1850 Willow Oaks Lane", StarRating = 3 },
-                    new Hotel { ID = 25, CityID = 25, Name = "Grand Hotel", Address = "3444 Drainer Avenue", StarRating = 3 },
-                    new Hotel { ID = 26, CityID = 26, Name = "Taj Holiday Village Resort & Spa, Goa", Address = "4525 Cityview Drive", StarRating = 4 },
-                    new Hotel { ID = 27, CityID = 8, Name = "Taj Holiday Village Resort & Spa, Goa", Address = "1794 Rockford Road", StarRating = 3 },
-                    new Hotel { ID = 28, CityID = 2, Name = "Grand Hotel", Address = "91 Hillside Street", StarRating = 2 }
-                    );
-                    context.Database.OpenConnection();
-                    try
-                    {
-                        context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Hotels ON");
-                        context.SaveChanges();
-                        context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Hotels OFF");
-                    }
-                    finally
-                    {
-                        context.Database.CloseConnection();
-                    }
+                    context.Hotels.AddRange(hotels);
+                    context.SaveChanges();
                 }
 
-                if (!context.RoomTypes.Any())
+                var roomTypes = new List<RoomType>
                 {
-                    context.RoomTypes.AddRange(
                     new RoomType { Name = "Single" },
                     new RoomType { Name = "Double" },
                     new RoomType { Name = "Triple" },
                     new RoomType { Name = "King" },
                     new RoomType { Name = "Apartment" }
-                    );
+                };
+
+                if (!context.RoomTypes.Any())
+                {
+                    context.RoomTypes.AddRange(roomTypes);
                     context.SaveChanges();
                 }
 
-                if (!context.TicketTypes.Any())
+                var ticketTypes = new List<TicketType>
                 {
-                    context.TicketTypes.AddRange(
                     new TicketType { Name = "Normal" },
                     new TicketType { Name = "VIP" },
                     new TicketType { Name = "Student" },
                     new TicketType { Name = "Veteran" }
-                    );
+                };
+
+                if (!context.TicketTypes.Any())
+                {
+                    context.TicketTypes.AddRange(ticketTypes);
                     context.SaveChanges();
                 }
 
-                if (!context.HotelServices.Any())
+                var hotelServices = new List<HotelService>
                 {
-                    context.HotelServices.AddRange(
                     new HotelService { HotelID = 1, RoomTypeID = 1, ServicePrice = 122.78M },
                     new HotelService { HotelID = 2, RoomTypeID = 2, ServicePrice = 399.59M },
                     new HotelService { HotelID = 3, RoomTypeID = 3, ServicePrice = 870.40M },
@@ -268,85 +254,90 @@ namespace TravelAgencyAPI.Models
                     new HotelService { HotelID = 6, RoomTypeID = 4, ServicePrice = 617.59M },
                     new HotelService { HotelID = 7, RoomTypeID = 4, ServicePrice = 617.59M },
                     new HotelService { HotelID = 28, RoomTypeID = 5, ServicePrice = 230.52M }
-                    );
-                        context.SaveChanges();
+                };
+
+                if (!context.HotelServices.Any())
+                {
+                    context.HotelServices.AddRange(hotelServices);
+                    context.SaveChanges();
                 }
+
+                var transports = new List<Transport>
+                {
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
+                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
+                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
+                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
+                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
+                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), ToCity = random.Next(1, 26), ServicePrice = 456.35M }
+                };
 
                 if (!context.Transports.Any())
                 {
-                    context.Transports.AddRange(
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
-                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
-                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 95.20M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
-                    new Transport { Name = "Ship", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Plane", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Car", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 247.65M },
-                    new Transport { Name = "Train", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 419.98M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 364.26M },
-                    new Transport { Name = "Bus", TicketTypeID = random.Next(1, 4), FromCity = random.Next(1, 26), ToCity = random.Next(1, 26), ServicePrice = 456.35M }
-                    );
+                    context.Transports.AddRange(transports);
                     context.SaveChanges();
-
                 }
 
-                if (!context.Offers.Any())
+                var offers = new List<Offer>
                 {
-                    context.Offers.AddRange(
                     new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("11/12/2021"), ToDate = DateTime.Parse("15/12/2021") },
                     new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("12/12/2021"), ToDate = DateTime.Parse("15/12/2021") },
                     new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("13/12/2021"), ToDate = DateTime.Parse("15/12/2021") },
@@ -416,30 +407,25 @@ namespace TravelAgencyAPI.Models
                     new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("26/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
                     new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("27/03/2022"), ToDate = DateTime.Parse("30/03/2022") },
                     new Offer { HotelID = random.Next(1, 28), TransportID = random.Next(1, 63), NumberOfPeople = random.Next(1, 5), FromDate = DateTime.Parse("07/04/2022"), ToDate = DateTime.Parse("15/04/2022") }
-                    );
+                };
+
+                if (!context.Offers.Any())
+                {
+                    context.Offers.AddRange(offers);
                     context.SaveChanges();
                 }
 
-                if (!context.Bookings.Any())
+                var bookings = new List<Booking>
                 {
-
-                    context.Bookings.AddRange(
                     new Booking { CustomerID = 1, BookingStatusID = 1, OfferID = 1, Date = DateTime.Parse("11/12/2021") },
                     new Booking { CustomerID = 1, BookingStatusID = 2, OfferID = 2, Date = DateTime.Parse("12/12/2021") },
                     new Booking { CustomerID = 2, BookingStatusID = 3, OfferID = 3, Date = DateTime.Parse("13/12/2021") },
                     new Booking { CustomerID = 3, BookingStatusID = 4, OfferID = 4, Date = DateTime.Parse("14/12/2021") }
-                    );
-                    context.SaveChanges();
-                }
+                };
 
-                if (!context.Payments.Any())
+                if (!context.Bookings.Any())
                 {
-                    context.Payments.AddRange(
-                    new Payment { BookingID = 1, Date = DateTime.Parse("11/12/2021"), Amount = 500.00M },
-                    new Payment { BookingID = 2, Date = DateTime.Parse("12/12/2021"), Amount = 700.00M },
-                    new Payment { BookingID = 3, Date = DateTime.Parse("13/12/2021"), Amount = 100.00M },
-                    new Payment { BookingID = 4, Date = DateTime.Parse("14/12/2021"), Amount = 300.00M }
-                    );
+                    context.Bookings.AddRange(bookings);
                     context.SaveChanges();
                 }
             }

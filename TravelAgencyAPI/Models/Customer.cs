@@ -27,5 +27,8 @@ namespace TravelAgencyAPI.Models
         public string Details { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime CustomerFrom { get; set; }
+
+        [SwaggerIgnore]
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

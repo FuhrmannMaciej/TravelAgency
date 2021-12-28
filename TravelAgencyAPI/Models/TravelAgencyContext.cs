@@ -25,6 +25,5 @@ namespace TravelAgencyAPI.Models
         public DbSet<Transport> Transports { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<Payment> Payments { get; set; }
     }
 }

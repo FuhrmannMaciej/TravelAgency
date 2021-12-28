@@ -9,7 +9,7 @@ using TravelAgency.Models;
 
 namespace TravelAgency.Migrations
 {
-    [DbContext(typeof(TravelAgencyContext))]
+    [DbContext(typeof(TravelAgencyMVCContext))]
     [Migration("20211211183456_UpdateForeignKeys6")]
     partial class UpdateForeignKeys6
     {

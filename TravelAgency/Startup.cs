@@ -1,15 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TravelAgency.Models;
+using TravelAgencyAPI.Controllers;
+using TravelAgencyAPI.Models;
 
 namespace TravelAgency
 {
@@ -27,8 +24,8 @@ namespace TravelAgency
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<TravelAgencyContext>(options =>
-                options.UseInMemoryDatabase("TravelAgency"));
+            services.AddDbContext<TravelAgencyMVCContext>(options =>
+                options.UseInMemoryDatabase("TravelAgencyTemp"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

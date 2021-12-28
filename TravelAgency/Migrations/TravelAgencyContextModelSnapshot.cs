@@ -8,7 +8,7 @@ using TravelAgency.Models;
 
 namespace TravelAgency.Migrations
 {
-    [DbContext(typeof(TravelAgencyContext))]
+    [DbContext(typeof(TravelAgencyMVCContext))]
     partial class TravelAgencyContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

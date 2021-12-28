@@ -15,12 +15,17 @@ namespace TravelAgencyAPI.Models
         public int ID { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Name { get; set; }
-        [ForeignKey("Cities")]
         public int CityID { get; set; }
-        private City City { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Address { get; set; }
         [Column(TypeName = "int")]
         public int StarRating { get; set; }
+
+        [SwaggerIgnore]
+        public virtual ICollection<Offer> Offers { get; set; }
+        [SwaggerIgnore]
+        public virtual ICollection<City> Cities { get; set; }
+        [SwaggerIgnore]
+        public virtual ICollection<HotelService> HotelServices { get; set; }
     }
 }
