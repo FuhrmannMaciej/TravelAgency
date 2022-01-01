@@ -20,12 +20,14 @@ namespace TravelAgency.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly string WebApiPath;
         private readonly IConfiguration _configuration;
+        private readonly string WebApiPathCountry;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _configuration = configuration;
             _logger = logger;
             WebApiPath = _configuration["TravelAgencyConfig:Url"];
+            WebApiPathCountry = _configuration["TravelAgencyConfig:UrlCountry"];
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("ApiKey", _configuration["TravelAgencyConfig:ApiKey"]);
         }
@@ -33,10 +35,16 @@ namespace TravelAgency.Controllers
         public async Task<ActionResult> Index()
         {
             List<Offer> offers = new List<Offer>();
+            List<Country> countries = new List<Country>();
             HttpResponseMessage response = await client.GetAsync(WebApiPath);
             if (response.IsSuccessStatusCode)
             {
                 offers = await response.Content.ReadAsAsync<List<Offer>>();
+            }
+            response = await client.GetAsync(WebApiPathCountry);
+            if (response.IsSuccessStatusCode)
+            {
+                countries = await response.Content.ReadAsAsync<List<Country>>();
             }
             var formViewModel = new FormViewModel
             {
@@ -44,6 +52,11 @@ namespace TravelAgency.Controllers
                 {
                     Value = x.ID.ToString(),
                     Text = x.FromDate.Date.ToShortDateString()
+                }),
+                CountryList = countries.Select(x => new SelectListItem
+                {
+                    Value = x.Code,
+                    Text = x.Name
                 })
             };
             return View(formViewModel);

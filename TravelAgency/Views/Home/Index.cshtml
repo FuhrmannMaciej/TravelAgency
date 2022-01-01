@@ -13,13 +13,19 @@
                 <div class="field-dropdown">
                     @Html.DropDownListFor(
                    x => x.Offer.ID,
-                   Model.OfferList)
+                   Model.OfferList,
+                   "--Select Date--",
+                   new { @class = "dropdown" } )
                 </div>
             </div>
             <div class="panel-field">
                 <label>Destination?</label>
                 <div class="field-dropdown">
-                    <input type="text" name="SearchString" />
+                    @Html.DropDownListFor(
+                   x => x.Country.Code,
+                   Model.CountryList,
+                   "--Select Country--",
+                   new { @class = "dropdown" })
                 </div>
             </div>
             <div class="panel-field">

@@ -61,7 +61,7 @@
         float: left;
     }
 
-        .search-panel .panel-fields .field-dropdown input {
+        .search-panel .panel-fields .field-dropdown .dropdown, .search-panel .panel-fields .field-dropdown input {
             width: 219px;
             color: #004481;
             cursor: pointer;

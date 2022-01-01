@@ -10,9 +10,8 @@ namespace TravelAgency.Models
     public class FormViewModel
     {
         public IEnumerable<SelectListItem> OfferList { get; set; }
-        public string SelectedDate { get; set; }
         public Offer Offer { get; set; }
-        public City City { get; set; }
+        public IEnumerable<SelectListItem> CountryList { get; set; }
         public Country Country { get; set; }
     }
 }
