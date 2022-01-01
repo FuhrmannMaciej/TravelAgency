@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model FormViewModel
 
 <link rel="stylesheet" href="~/css/homePage.css" />
 
@@ -13,7 +11,9 @@
             <div class="panel-field">
                 <label>When?</label>
                 <div class="field-dropdown">
-                    <input type="text" name="SearchString" />
+                    @Html.DropDownListFor(
+                   x => x.Offer.ID,
+                   Model.OfferList)
                 </div>
             </div>
             <div class="panel-field">
