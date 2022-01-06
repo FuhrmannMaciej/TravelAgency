@@ -32,15 +32,23 @@ namespace TravelAgency.Controllers
 
 
         // GET: ClientController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(FormViewModel offerSearch)
         {
             List<Offer> offers = new List<Offer>();
             List<Hotel> hotels = new List<Hotel>();
             List<City> cities = new List<City>();
             List<Country> countries = new List<Country>();
             HttpResponseMessage response = await client.GetAsync(WebApiPath);
+
             if (response.IsSuccessStatusCode)
             {
+                if (offerSearch != null)
+                {
+                    if (!string.IsNullOrEmpty(offerSearch.Offer.ID.ToString()))
+                    {
+                        response = await client.GetAsync(WebApiPath + "?offerID=" + offerSearch.Offer.ID.ToString());
+                    }
+                }
                 offers = await response.Content.ReadAsAsync<List<Offer>>();
             }
             response = await client.GetAsync(WebApiPathHotel);
@@ -56,6 +64,13 @@ namespace TravelAgency.Controllers
             response = await client.GetAsync(WebApiPathCountry);
             if (response.IsSuccessStatusCode)
             {
+                if (offerSearch != null)
+                {
+                    if (!string.IsNullOrEmpty(offerSearch.Country.Code))
+                    {
+                        response = await client.GetAsync(WebApiPathCountry + "?countryCode=" + offerSearch.Country.Code);
+                    }
+                }
                 countries = await response.Content.ReadAsAsync<List<Country>>();
             }
 

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TravelAgencyAPI.Models;
 
-namespace TravelAgency.Models
+namespace TravelAgencyAPI.Models.OtherModels
 {
-    public class OfferViewModel
+    public class OfferJoinedData
     {
         public Offer Offer { get; set; }
         public Hotel Hotel { get; set; }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravelAgencyAPI.Attributes;
 using TravelAgencyAPI.Models;
+using TravelAgencyAPI.Models.OtherModels;
 
 namespace TravelAgencyAPI.Controllers
 {
@@ -22,12 +23,12 @@ namespace TravelAgencyAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Offers
+        /*// GET: api/Offers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Offer>>> GetOffers()
         {
             return await _context.Offers.ToListAsync();
-        }
+        }*/
 
         // GET: api/Offers/5
         [HttpGet("{id}")]
@@ -43,7 +44,25 @@ namespace TravelAgencyAPI.Controllers
             return offer;
         }
 
-        
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Offer>>> GetOffers(string offerID ,string fromDate)
+        {
+            var offers = from o in _context.Offers
+                         select o;
+
+            if (!string.IsNullOrEmpty(offerID))
+            {
+                offers = offers.Where(o => o.ID.ToString().Equals(offerID));
+            }
+            if (!string.IsNullOrEmpty(fromDate))
+            {
+                offers = offers.Where(o => o.FromDate.Date.ToString().Contains(fromDate));
+            }
+
+            return await offers.ToListAsync();
+        }
+
+
         // POST: api/Offers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

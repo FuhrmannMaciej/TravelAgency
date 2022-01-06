@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="~/css/homePage.css" />
 
 <div class="search-panel">
-    <form asp-controller="Home" asp-action="Index" method="get">
+    <form asp-controller="Client" asp-action="Index" method="get">
         <div class="form-title">
             <h2>Find the holidays you deserve!</h2>
         </div>
@@ -15,7 +15,7 @@
                    x => x.Offer.ID,
                    Model.OfferList,
                    "--Select Date--",
-                   new { @class = "dropdown" } )
+                   new { @class = "dropdown", @name = "offerID" })
                 </div>
             </div>
             <div class="panel-field">
@@ -25,7 +25,7 @@
                    x => x.Country.Code,
                    Model.CountryList,
                    "--Select Country--",
-                   new { @class = "dropdown" })
+                   new { @class = "dropdown", @name = "countryCode" })
                 </div>
             </div>
             <div class="panel-field">
@@ -34,9 +34,9 @@
                     <input type="text" name="SearchString" />
                 </div>
             </div>
-                        <div class="form-submit">
-                            <input type="submit" value="Search" />
-                        </div>
-                    </div>
-</form>
+            <div class="form-submit">
+                <input type="submit" value="Search" />
+            </div>
+        </div>
+    </form>
 </div>

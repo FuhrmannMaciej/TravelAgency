@@ -24,9 +24,21 @@ namespace TravelAgencyAPI.Controllers
 
         // GET: api/Countries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
+        public async Task<ActionResult<IEnumerable<Country>>> GetCountries(string countryName, string countryCode)
         {
-            return await _context.Countries.ToListAsync();
+            var countries = from c in _context.Countries
+                         select c;
+
+            if (!string.IsNullOrEmpty(countryName))
+            {
+                countries = countries.Where(o => o.Name.Contains(countryName));
+            }
+            if (!string.IsNullOrEmpty(countryCode))
+            {
+                countries = countries.Where(o => o.Code.Equals(countryCode));
+            }
+
+            return await countries.ToListAsync();
         }
 
         // GET: api/Countries/5
