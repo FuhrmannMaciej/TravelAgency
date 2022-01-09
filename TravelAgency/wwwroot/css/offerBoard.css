@@ -55,7 +55,7 @@ h1 {
 }
 
 .header-title {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
     letter-spacing: 0.65px;
     line-height: 20px;
@@ -64,22 +64,19 @@ h1 {
     padding: 10px;
 }
 
-.stars {
-    color: #10447D !important;
-    display: inline-block;
-    margin-left: 5px;
-    height: 13px;
-    background-color: transparent;
-}
-
-    .stars .star {
-        font-size: 17px;
-        font-weight: bold;
-        letter-spacing: 0.65px;
-        line-height: 20px;
-        margin: 0;
-        background-image: url("../icons/star.png");
+    .header-title .stars {
+        display: inline-block;
+        margin-left: 5px;
+        height: 13px;
+        background-color: transparent;
     }
+
+        .header-title .stars .star {
+            margin-right: 2px;
+            width: 11px;
+            height: 12px;
+            display: inline-block;
+        }
 
 .offer-info {
     padding: 5px 12px 5px 5px;

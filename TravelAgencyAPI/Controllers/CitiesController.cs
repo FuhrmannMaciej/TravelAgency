@@ -23,9 +23,21 @@ namespace TravelAgencyAPI.Controllers
 
         // GET: api/Cities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<City>>> GetCities()
+        public async Task<ActionResult<IEnumerable<City>>> GetCities(string cityID ,string cityName)
         {
-            return await _context.Cities.ToListAsync();
+            var cities = from c in _context.Cities
+                            select c;
+
+            if (!string.IsNullOrEmpty(cityID))
+            {
+                cities = cities.Where(o => o.ID.ToString().Equals(cityID));
+            }
+            if (!string.IsNullOrEmpty(cityName))
+            {
+                cities = cities.Where(o => o.Name.Contains(cityName));
+            }
+
+            return await cities.ToListAsync();
         }
 
         // GET: api/Cities/5

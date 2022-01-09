@@ -13,10 +13,11 @@ namespace TravelAgency.Models
         public IEnumerable<SelectListItem> OfferList { get; set; }
         [BindProperty(SupportsGet = true)]
         public Offer Offer { get; set; }
-        public List<Offer> Offers { get; set; }
         public IEnumerable<SelectListItem> CountryList { get; set; }
         [BindProperty(SupportsGet = true)]
         public Country Country { get; set; }
-        public List<Country> Countries { get; set; }
+        public IEnumerable<SelectListItem> CityList { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public City City { get; set; }
     }
 }

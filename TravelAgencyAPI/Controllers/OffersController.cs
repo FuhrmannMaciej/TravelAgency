@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravelAgencyAPI.Attributes;
 using TravelAgencyAPI.Models;
-using TravelAgencyAPI.Models.OtherModels;
 
 namespace TravelAgencyAPI.Controllers
 {

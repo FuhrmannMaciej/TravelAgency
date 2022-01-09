@@ -21,6 +21,7 @@ namespace TravelAgency.Controllers
         private readonly string WebApiPath;
         private readonly IConfiguration _configuration;
         private readonly string WebApiPathCountry;
+        private readonly string WebApiPathCity;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
@@ -28,14 +29,17 @@ namespace TravelAgency.Controllers
             _logger = logger;
             WebApiPath = _configuration["TravelAgencyConfig:Url"];
             WebApiPathCountry = _configuration["TravelAgencyConfig:UrlCountry"];
+            WebApiPathCity = _configuration["TravelAgencyConfig:UrlCity"];
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("ApiKey", _configuration["TravelAgencyConfig:ApiKey"]);
         }
 
+        [HttpGet]
         public async Task<ActionResult> Index()
         {
             List<Offer> offers = new List<Offer>();
             List<Country> countries = new List<Country>();
+            List<City> cities = new List<City>();
             HttpResponseMessage response = await client.GetAsync(WebApiPath);
             if (response.IsSuccessStatusCode)
             {
@@ -45,6 +49,11 @@ namespace TravelAgency.Controllers
             if (response.IsSuccessStatusCode)
             {
                 countries = await response.Content.ReadAsAsync<List<Country>>();
+            }
+            response = await client.GetAsync(WebApiPathCity);
+            if (response.IsSuccessStatusCode)
+            {
+                cities = await response.Content.ReadAsAsync<List<City>>();
             }
             var formViewModel = new FormViewModel
             {
@@ -56,6 +65,11 @@ namespace TravelAgency.Controllers
                 CountryList = countries.Select(x => new SelectListItem
                 {
                     Value = x.Code,
+                    Text = x.Name
+                }),
+                CityList = cities.Select(x => new SelectListItem
+                {
+                    Value = x.ID.ToString(),
                     Text = x.Name
                 })
             };

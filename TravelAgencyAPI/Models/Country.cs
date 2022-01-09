@@ -17,8 +17,5 @@ namespace TravelAgencyAPI.Models
         public string Code { get; set; }
         [Column(TypeName = "varchar(64)")]
         public string Name{ get; set; }
-
-        [SwaggerIgnore]
-        public virtual ICollection<City> Cities { get; set; }
     }
 }

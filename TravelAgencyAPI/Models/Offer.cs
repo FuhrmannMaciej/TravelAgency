@@ -14,7 +14,6 @@ namespace TravelAgencyAPI.Models
         [Key]
         public int ID { get; set; }
         public int HotelID { get; set; }
-        public int TransportID { get; set; }
         [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
         [DataType(DataType.Date)]
@@ -30,8 +29,6 @@ namespace TravelAgencyAPI.Models
 
         [SwaggerIgnore]
         public virtual Hotel Hotels { get; set; }
-        [SwaggerIgnore]
-        public virtual Transport Transports { get; set; }
         [SwaggerIgnore]
         public virtual ICollection<Booking> Bookings { get; set; }
 

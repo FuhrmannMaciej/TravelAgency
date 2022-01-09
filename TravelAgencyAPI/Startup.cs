@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravelAgencyAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace TravelAgencyAPI
 {

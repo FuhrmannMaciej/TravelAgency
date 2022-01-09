@@ -25,7 +25,5 @@ namespace TravelAgencyAPI.Models
         public virtual ICollection<Offer> Offers { get; set; }
         [SwaggerIgnore]
         public virtual ICollection<City> Cities { get; set; }
-        [SwaggerIgnore]
-        public virtual ICollection<HotelService> HotelServices { get; set; }
     }
 }

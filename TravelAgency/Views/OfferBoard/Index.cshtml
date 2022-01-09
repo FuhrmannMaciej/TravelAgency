@@ -1,0 +1,62 @@
+﻿@model IEnumerable<OfferViewModel>
+
+@{
+    ViewData["Title"] = "Offer Board";
+}
+
+<link rel="stylesheet" href="~/css/offerBoard.css" />
+
+<h1>Holidays</h1>
+
+<div class="offer-column-main">
+
+    <div class="offer-list">
+        @foreach (var item in Model)
+        {
+            <div>
+                <article data-index=@item.Offer.ID class="offer">
+                    <div class="offer-column-first">
+                        <div class="photo-wrapper">
+                            <img src="/icons/holidayPicture.jpg" alt="Holiday Picture" />
+                        </div>
+                    </div>
+                    <div class="offer-column-second">
+                        <div class="offer-description">
+                            <span class="offer-title">Holidays</span>
+                            <header>
+                                <div class="offer-destination">
+                                    @item.Country.Name / @item.City.Name
+                                </div>
+                                <h3 class="header-title">
+                                    @item.Hotel.Name
+                                <span class="stars">
+                                    @for (int i = 0; i < @item.Hotel.StarRating; i++)
+                                    {
+                                        <img class="star" src="/icons/starIcon.png" />
+                                    }
+                                </span>
+                            </h3>
+                        </header>
+                    </div>
+                    <div class="offer-inner-border"></div>
+                    <div class="offer-description-details">
+                        <div class="offer-info">
+                            <div class="offer-date">
+                                <span>@item.Offer.FromDate.Date.ToShortDateString() - @item.Offer.ToDate.Date.ToShortDateString() (@item.Offer.NumberOfDays days)</span>
+                            </div>
+                            <div class="offer-info-details">
+                                <div class="offer-price">
+                                    <span class="current-price">@item.Offer.Price PLN / pp</span>
+                                </div>
+                                <a asp-controller="OfferBoard" asp-action="Create" class="offer-link">
+                                    <span class="link-text">Book it now!</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    }
+    </div>
+</div>
