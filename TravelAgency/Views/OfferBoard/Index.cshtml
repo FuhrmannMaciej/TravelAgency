@@ -48,8 +48,8 @@
                                 <div class="offer-price">
                                     <span class="current-price">@item.Offer.Price PLN / pp</span>
                                 </div>
-                                <a asp-controller="OfferBoard" asp-action="Create" class="offer-link">
-                                    <span class="link-text">Book it now!</span>
+                                <a asp-controller="OfferBoard" asp-action="Details" asp-route-id="@item.Offer.ID" class="offer-link">
+                                    <span class="link-text">Check the offer</span>
                                 </a>
                             </div>
                         </div>

@@ -1,0 +1,56 @@
+﻿@model OfferViewModel
+
+@{
+    ViewData["Title"] = "Offer Details";
+}
+
+<h2>Offer Details</h2>
+
+<div>
+    <h4>Holiday</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="OfferBoard" asp-action="Created" asp-route-id="@Model.Offer.ID">
+                <div class="form-group">
+                    <label asp-for="Hotel.Name" class="control-label">Hotel Name</label>
+                    <input asp-for="Hotel.Name" class="form-control" value=@Model.Hotel.Name disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Hotel.Address" class="control-label">Hotel Address</label>
+                    <input asp-for="Hotel.Address" class="form-control" value=@Model.Hotel.Address disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country.Name" class="control-label">Destination (Country) </label>
+                    <input asp-for="Country.Name" class="form-control" value=@Model.Country.Name disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="City.Name" class="control-label">Destination (City)</label>
+                    <input asp-for="City.Name" class="form-control" value=@Model.City.Name disabled />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Start Date</label>
+                    <input class="form-control" value=@Model.Offer.FromDate.ToShortDateString() disabled />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">End Date</label>
+                    <input class="form-control" value=@Model.Offer.ToDate.ToShortDateString() disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Offer.NumberOfPeople" class="control-label">Number Of People</label>
+                    <input asp-for="Offer.NumberOfPeople" class="form-control" value=@Model.Offer.NumberOfPeople disabled />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Offer.Price" class="control-label">Price (PLN)</label>
+                    <input asp-for="Offer.Price" class="form-control" value=@Model.Offer.Price disabled />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Book it now !" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-controller="OfferBoard" asp-action="Index">Back to Offer Board</a>
+</div>

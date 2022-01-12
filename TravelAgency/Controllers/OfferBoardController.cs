@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TravelAgency.Models;
 using TravelAgencyAPI.Models;
 using System.Linq;
+using System;
 
 
 namespace TravelAgency.Controllers
@@ -34,7 +35,6 @@ namespace TravelAgency.Controllers
         }
 
 
-        // GET: ClientController
         [HttpGet("{offerID ?}/{cityID ?}/{numberOfPeople ?}")]
         public async Task<ActionResult> Index(int? offerID, int? cityID, int? numberOfPeople)
         {
@@ -69,10 +69,6 @@ namespace TravelAgency.Controllers
             response = await client.GetAsync(WebApiPathCountry);
             if (response.IsSuccessStatusCode)
             {
-                /*if (!string.IsNullOrEmpty(countryCode))
-                {
-                        response = await client.GetAsync(WebApiPathCountry + "?countryCode=" + countryCode);
-                }*/
                 countries = await response.Content.ReadAsAsync<List<Country>>();
             }
 
@@ -86,20 +82,54 @@ namespace TravelAgency.Controllers
 
             return View(joinModel);
         }
-
-
-
-        // POST: ClientController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]  //offer add deoc to slides
-        public async Task<ActionResult> Create([Bind("ID,CustonerID,OfferID,BookingStatusID,Date")] Booking booking)
+        [HttpGet("/Details/{id}")]
+        public async Task<ActionResult> Details(int id)
         {
-            if (ModelState.IsValid)
+            Offer offer = new Offer();
+            Hotel hotel = new Hotel();
+            City city = new City();
+            Country country = new Country();
+            HttpResponseMessage response = await client.GetAsync(WebApiPath + "/" + id);
+            if (response.IsSuccessStatusCode)
             {
-                HttpResponseMessage response = await client.PostAsJsonAsync(WebApiPathBooking, booking);
-                response.EnsureSuccessStatusCode();
+                offer = await response.Content.ReadAsAsync<Offer>();
+            }
+            response = await client.GetAsync(WebApiPathHotel + "/" + offer.HotelID);
+            if (response.IsSuccessStatusCode)
+            {
+                hotel = await response.Content.ReadAsAsync<Hotel>();
+            }
+            response = await client.GetAsync(WebApiPathCity + "/" + hotel.CityID);
+            if (response.IsSuccessStatusCode)
+            {
+                city = await response.Content.ReadAsAsync<City>();
+            }
+            response = await client.GetAsync(WebApiPathCountry + "/" + city.CountryID);
+            if (response.IsSuccessStatusCode)
+            {
+                country = await response.Content.ReadAsAsync<Country>();
+            }
+
+            var joinModel = new OfferViewModel { Offer = offer, Hotel = hotel, City = city, Country = country };
+
+            return View(joinModel);
+        }
+
+        [HttpPost("/Created/{id}")]
+        public async Task<ActionResult> Created(int id)
+        {
+            Booking booking = new Booking();
+            booking.CustomerID = 1;
+            booking.BookingStatusID = 5;
+            booking.OfferID = id;
+            booking.Date = DateTime.Now;
+            
+            HttpResponseMessage response = await client.PostAsJsonAsync(WebApiPathBooking, booking);
+            if (response.IsSuccessStatusCode)
+            {
                 return RedirectToAction(nameof(Index));
             }
+            
             return View();
         }
     }
