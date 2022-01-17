@@ -10,7 +10,7 @@ using TravelAgencyAPI.Models;
 namespace TravelAgencyAPI.Migrations
 {
     [DbContext(typeof(TravelAgencyContext))]
-    [Migration("20220109115244_initial")]
+    [Migration("20220117161303_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -197,9 +197,6 @@ namespace TravelAgencyAPI.Migrations
 
                     b.Property<DateTime>("ToDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("TransportID")
-                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

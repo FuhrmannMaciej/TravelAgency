@@ -96,7 +96,6 @@ namespace TravelAgencyAPI.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HotelID = table.Column<int>(type: "int", nullable: false),
-                    TransportID = table.Column<int>(type: "int", nullable: false),
                     FromDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ToDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumberOfPeople = table.Column<int>(type: "int", nullable: false),

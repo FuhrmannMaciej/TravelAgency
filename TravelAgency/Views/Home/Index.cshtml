@@ -2,45 +2,39 @@
 
 <link rel="stylesheet" href="~/css/homePage.css" />
 
-<div class="search-panel">
-    <form asp-controller="OfferBoard" asp-action="Index" method="get">
-        <div class="form-title">
-            <h2>Find the holidays you deserve!</h2>
-        </div>
-        <div class="panel-fields">
-            <div class="panel-field">
-                <label>When?</label>
-                <div class="field-dropdown">
-                    <select name="offerID" class="dropdown">
-                        <option selected="selected" value="">--Select Date--</option>
-                        @foreach (var item in Model.OfferList)
-                        {
-                            <option value="@(item.Value)">@item.Text</option>
-                        }
-                    </select>
+    <div class="search-panel">
+        <form asp-controller="OfferBoard" asp-action="Index" method="get">
+            <div class="form-title">
+                <h2>Find the holidays you deserve!</h2>
+            </div>
+            <div class="panel-fields">
+                <div class="panel-field">
+                    <label>When?</label>
+                    <div class="field-dropdown">
+                        <select name="offerID" class="dropdown">
+                            <option selected="selected" value="">--Select Date--</option>
+                            @foreach (var item in Model.OfferList)
+                            {
+                                <option value="@(item.Value)">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="panel-field">
+                    <label>Destination?</label>
+                    <div class="field-dropdown">
+                        <select name="cityID" class="dropdown">
+                            <option selected="selected" value="">--Select City--</option>
+                            @foreach (var item in Model.CityList)
+                            {
+                                <option value="@(item.Value)">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-submit">
+                    <input asp-controller="OfferBoard" asp-action="Index" type="submit" value="Search" />
                 </div>
             </div>
-            <div class="panel-field">
-                <label>Destination?</label>
-                <div class="field-dropdown">
-                    <select name="cityID" class="dropdown">
-                        <option selected="selected" value="">--Select City--</option>
-                        @foreach (var item in Model.CityList)
-                        {
-                            <option value="@(item.Value)">@item.Text</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <div class="panel-field">
-                <label>Guests?</label>
-                <div class="field-dropdown">
-                    <input type="text" name="numberOfPeople" />
-                </div>
-            </div>
-            <div class="form-submit">
-                <input asp-controller="OfferBoard" asp-action="Index" type="submit" value="Search" />
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>

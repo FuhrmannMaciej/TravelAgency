@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TravelAgencyAPI.Attributes;
 
@@ -22,8 +23,10 @@ namespace TravelAgencyAPI.Models
         public int StarRating { get; set; }
 
         [SwaggerIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public virtual ICollection<Offer> Offers { get; set; }
         [SwaggerIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public virtual ICollection<City> Cities { get; set; }
     }
 }

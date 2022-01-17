@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using TravelAgencyAPI.Attributes;
 
 namespace TravelAgencyAPI.Models
@@ -18,10 +19,13 @@ namespace TravelAgencyAPI.Models
         public DateTime Date { get; set; }
 
         [SwaggerIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public virtual Customer Customer { get; set; }
         [SwaggerIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public virtual Offer Offer { get; set; }
         [SwaggerIgnore]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public virtual BookingStatus BookingStatus { get; set; }
     }
 }

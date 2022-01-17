@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TravelAgency.Models;
+using TravelAgency.Models.ViewModels;
 using TravelAgencyAPI.Models;
 
 
@@ -22,6 +23,9 @@ namespace TravelAgency.Controllers
         private readonly IConfiguration _configuration;
         private readonly string WebApiPathCountry;
         private readonly string WebApiPathCity;
+        private readonly string WebApiPathBooking;
+        private readonly string WebApiPathBookingStatus;
+        private readonly string WebApiPathCustomer;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
@@ -30,6 +34,9 @@ namespace TravelAgency.Controllers
             WebApiPath = _configuration["TravelAgencyConfig:Url"];
             WebApiPathCountry = _configuration["TravelAgencyConfig:UrlCountry"];
             WebApiPathCity = _configuration["TravelAgencyConfig:UrlCity"];
+            WebApiPathBooking = _configuration["TravelAgencyConfig:UrlBooking"];
+            WebApiPathBookingStatus = _configuration["TravelAgencyConfig:UrlBookingStatus"];
+            WebApiPathCustomer = _configuration["TravelAgencyConfig:UrlCustomer"];
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("ApiKey", _configuration["TravelAgencyConfig:ApiKey"]);
         }
@@ -76,9 +83,43 @@ namespace TravelAgency.Controllers
             return View(formViewModel);
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public async Task<ActionResult> MyBookings()
         {
-            return View();
+            List<Offer> offers = new List<Offer>();
+            List<Customer> customers = new List<Customer>();
+            List<Booking> bookings = new List<Booking>();
+            List<BookingStatus> bookingStatuses = new List<BookingStatus>();
+            HttpResponseMessage response = await client.GetAsync(WebApiPath);
+            if (response.IsSuccessStatusCode)
+            {
+                offers = await response.Content.ReadAsAsync<List<Offer>>();
+            }
+            response = await client.GetAsync(WebApiPathBooking);
+            if (response.IsSuccessStatusCode)
+            {
+                bookings = await response.Content.ReadAsAsync<List<Booking>>();
+            }
+            response = await client.GetAsync(WebApiPathBookingStatus);
+            if (response.IsSuccessStatusCode)
+            {
+                bookingStatuses = await response.Content.ReadAsAsync<List<BookingStatus>>();
+            }
+            response = await client.GetAsync(WebApiPathCustomer);
+            if (response.IsSuccessStatusCode)
+            {
+                customers = await response.Content.ReadAsAsync<List<Customer>>();
+            }
+
+            var bookingModel = from b in bookings
+                               join o in offers on b.OfferID equals o.ID
+                               join bs in bookingStatuses on b.BookingStatusID equals bs.ID
+                               join c in customers on b.CustomerID equals c.ID into o2
+                               orderby b.Date
+                               from c in o2.DefaultIfEmpty()
+                               select new BookingsViewModel { Offer = o, Booking = b, BookingStatus = bs, Customer = c };
+
+            return View(bookingModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

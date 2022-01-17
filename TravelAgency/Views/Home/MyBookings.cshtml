@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TravelAgency.Models.ViewModels.BookingsViewModel>
+
+    @{
+    ViewData["Title"] = "My Bookings";
+    }
+
+    <h1>My Bookings</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.Phone)
+                </th>
+                <th>
+                    Email Address
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookingStatus.Status)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingStatus.Status)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

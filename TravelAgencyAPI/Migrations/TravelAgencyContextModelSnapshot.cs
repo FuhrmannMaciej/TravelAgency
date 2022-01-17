@@ -196,9 +196,6 @@ namespace TravelAgencyAPI.Migrations
                     b.Property<DateTime>("ToDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TransportID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
                     b.HasIndex("HotelID");
