@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TravelAgency.Models;
+using TravelAgencyAPI.Models;
 
-namespace TravelAgency.Migrations
+namespace TravelAgencyAPI.Migrations
 {
-    [DbContext(typeof(TravelAgencyMVCContext))]
-    [Migration("20211211165909_UpdateForeignKeys2")]
-    partial class UpdateForeignKeys2
+    [DbContext(typeof(TravelAgencyContext))]
+    [Migration("20220118195946_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,22 @@ namespace TravelAgency.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("TravelAgency.Models.Booking", b =>
+            modelBuilder.Entity("CityHotel", b =>
+                {
+                    b.Property<int>("CitiesID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HotelsID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CitiesID", "HotelsID");
+
+                    b.HasIndex("HotelsID");
+
+                    b.ToTable("CityHotel");
+                });
+
+            modelBuilder.Entity("TravelAgencyAPI.Models.Booking", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -51,7 +66,7 @@ namespace TravelAgency.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.BookingStatus", b =>
+            modelBuilder.Entity("TravelAgencyAPI.Models.BookingStatus", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -66,7 +81,7 @@ namespace TravelAgency.Migrations
                     b.ToTable("BookingStatuses");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.City", b =>
+            modelBuilder.Entity("TravelAgencyAPI.Models.City", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -81,13 +96,12 @@ namespace TravelAgency.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CountryID")
-                        .IsUnique();
+                    b.HasIndex("CountryID");
 
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.Country", b =>
+            modelBuilder.Entity("TravelAgencyAPI.Models.Country", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -105,7 +119,7 @@ namespace TravelAgency.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.Customer", b =>
+            modelBuilder.Entity("TravelAgencyAPI.Models.Customer", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -138,7 +152,7 @@ namespace TravelAgency.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.Hotel", b =>
+            modelBuilder.Entity("TravelAgencyAPI.Models.Hotel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -162,36 +176,12 @@ namespace TravelAgency.Migrations
                     b.ToTable("Hotels");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.HotelService", b =>
+            modelBuilder.Entity("TravelAgencyAPI.Models.Offer", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("HotelID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomTypeID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ServicePrice")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("HotelServices");
-                });
-
-            modelBuilder.Entity("TravelAgency.Models.Offer", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CityID")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("FromDate")
                         .HasColumnType("datetime2");
@@ -208,108 +198,44 @@ namespace TravelAgency.Migrations
                     b.Property<DateTime>("ToDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TransportID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
+
+                    b.HasIndex("HotelID");
 
                     b.ToTable("Offers");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.Payment", b =>
+            modelBuilder.Entity("CityHotel", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("BookingID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Payments");
-                });
-
-            modelBuilder.Entity("TravelAgency.Models.RoomType", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(64)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("RoomTypes");
-                });
-
-            modelBuilder.Entity("TravelAgency.Models.TicketType", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(64)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("TicketTypes");
-                });
-
-            modelBuilder.Entity("TravelAgency.Models.Transport", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("FromCity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<decimal>("ServicePrice")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<int>("TicketTypeID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ToCity")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Transports");
-                });
-
-            modelBuilder.Entity("TravelAgency.Models.Booking", b =>
-                {
-                    b.HasOne("TravelAgency.Models.BookingStatus", "BookingStatus")
+                    b.HasOne("TravelAgencyAPI.Models.City", null)
                         .WithMany()
+                        .HasForeignKey("CitiesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TravelAgencyAPI.Models.Hotel", null)
+                        .WithMany()
+                        .HasForeignKey("HotelsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TravelAgencyAPI.Models.Booking", b =>
+                {
+                    b.HasOne("TravelAgencyAPI.Models.BookingStatus", "BookingStatus")
+                        .WithMany("Bookings")
                         .HasForeignKey("BookingStatusID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelAgency.Models.Customer", "Customer")
-                        .WithMany()
+                    b.HasOne("TravelAgencyAPI.Models.Customer", "Customer")
+                        .WithMany("Bookings")
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelAgency.Models.Offer", "Offer")
-                        .WithMany()
+                    b.HasOne("TravelAgencyAPI.Models.Offer", "Offer")
+                        .WithMany("Bookings")
                         .HasForeignKey("OfferID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -321,20 +247,46 @@ namespace TravelAgency.Migrations
                     b.Navigation("Offer");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.City", b =>
+            modelBuilder.Entity("TravelAgencyAPI.Models.City", b =>
                 {
-                    b.HasOne("TravelAgency.Models.Country", "Country")
-                        .WithOne("City")
-                        .HasForeignKey("TravelAgency.Models.City", "CountryID")
+                    b.HasOne("TravelAgencyAPI.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("TravelAgency.Models.Country", b =>
+            modelBuilder.Entity("TravelAgencyAPI.Models.Offer", b =>
                 {
-                    b.Navigation("City");
+                    b.HasOne("TravelAgencyAPI.Models.Hotel", "Hotels")
+                        .WithMany("Offers")
+                        .HasForeignKey("HotelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotels");
+                });
+
+            modelBuilder.Entity("TravelAgencyAPI.Models.BookingStatus", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("TravelAgencyAPI.Models.Customer", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("TravelAgencyAPI.Models.Hotel", b =>
+                {
+                    b.Navigation("Offers");
+                });
+
+            modelBuilder.Entity("TravelAgencyAPI.Models.Offer", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }
